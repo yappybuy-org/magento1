@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}"
+             targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">			
+            <xsd:complexType name="shoppingCartItemModEntity">
+                <xsd:sequence>
+                    <xsd:element name="item_id" type="xsd:string" minOccurs="1"/>                    
+                    <xsd:element name="qty" type="xsd:double" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>			
+            <xsd:complexType name="shoppingCartItemModEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:shoppingCartItemModEntity" />
+                </xsd:sequence>
+            </xsd:complexType>        
+            <xsd:element name="shoppingCartItemUpdateRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="quoteId" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="itemData" type="typens:shoppingCartItemModEntityArray" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="store" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="shoppingCartItemUpdateResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="shoppingCartItemRemoveRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="quoteId" type="xsd:int" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productsData" type="typens:shoppingCartItemModEntityArray" />
+                        <xsd:element minOccurs="0" maxOccurs="1" name="store" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="shoppingCartItemRemoveResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+			
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="shoppingCartItemUpdateRequest">
+        <wsdl:part name="parameters" element="typens:shoppingCartItemUpdateRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="shoppingCartItemUpdateResponse">
+        <wsdl:part name="parameters" element="typens:shoppingCartItemUpdateResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="shoppingCartItemRemoveRequest">
+        <wsdl:part name="parameters" element="typens:shoppingCartItemRemoveRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="shoppingCartItemRemoveResponse">
+        <wsdl:part name="parameters" element="typens:shoppingCartItemRemoveResponseParam" />
+    </wsdl:message>    
+
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="shoppingCartItemUpdate">
+            <wsdl:documentation>Update cart item(s) quantities in shopping cart</wsdl:documentation>
+            <wsdl:input message="typens:shoppingCartItemUpdateRequest"/>
+            <wsdl:output message="typens:shoppingCartItemUpdateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartItemRemove">
+            <wsdl:documentation>Remove cart item(s) from shopping cart</wsdl:documentation>
+            <wsdl:input message="typens:shoppingCartItemRemoveRequest"/>
+            <wsdl:output message="typens:shoppingCartItemRemoveResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="shoppingCartPItemUpdate">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="shoppingCartItemRemove">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

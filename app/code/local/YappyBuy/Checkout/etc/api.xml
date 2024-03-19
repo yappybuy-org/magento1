@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <cart_item translate="title" module="ybcheckout">
+                <model>ybcheckout/cart_item_api</model>
+                <title>Cart Items</title>
+                <acl>cart/cart_item</acl>
+                <methods>
+                    <update translate="title" module="ybcheckout">
+                        <title>Update cart item quantities in shopping cart</title>
+                        <method>update</method>
+                        <acl>cart/cart_item/update</acl>
+                    </update>
+                    <remove translate="title" module="ybcheckout">
+                        <title>Remove cart item from shopping cart</title>
+                        <method>remove</method>
+                        <acl>cart/cart_item/remove</acl>
+                    </remove>                    
+                </methods>
+                <faults module="ybcheckout">
+                    <items_not_exists>
+                        <code>1101</code>
+                        <message>Can not make operation because quote item is not exists</message>
+                    </items_not_exists>
+                    <items_quote_not_exists>
+                        <code>1102</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </items_quote_not_exists>
+                    <items_invalid_product_data>
+                        <code>1121</code>
+                        <message>Item's data is not valid.</message>
+                    </items_invalid_product_data>                    
+                    <items_update_product_fault>
+                        <code>1124</code>
+                        <message>Item(s) could not be updated. </message>
+                    </items_update_product_fault>
+                    <items_update_product_quote_save_fault>
+                        <code>1125</code>
+                        <message>Quote could not be saved during updating product(s) operation.</message>
+                    </items_update_product_quote_save_fault>
+                    <items_remove_product_fault>
+                        <code>1126</code>
+                        <message>Item(s) could not be removed. </message>
+                    </items_remove_product_fault>                    
+                </faults>
+            </cart_item>            
+        </resources>        
+        <v2>
+            <resources_function_prefix>                
+                <cart_item>shoppingCartItem</cart_item>                
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <cart>                                        
+                    <cart_item translate="title" module="ybcheckout">
+						<sort_order>10</sort_order>
+                        <title>Cart Items</title>
+                        <update translate="title" module="ybcheckout">
+                            <title>Update cart item quantities in shopping cart</title>
+                        </update>
+                        <remove translate="title" module="ybcheckout">
+                            <title>Remove cart item from shopping cart</title>
+                        </remove>						
+                    </cart_item>
+                </cart>
+            </resources>
+        </acl>		
+    </api>
+</config>

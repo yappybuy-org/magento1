@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <YappyBuy_Checkout>
+            <active>true</active>
+            <codePool>local</codePool>
+        </YappyBuy_Checkout>
+    </modules>
+</config>

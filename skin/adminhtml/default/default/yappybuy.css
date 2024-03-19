@@ -1,0 +1,18 @@
+ul.tabs li.yappy-buy-section dt {
+	background: url("images/yappyBuyLogo.svg") no-repeat scroll 22px center #D1DEDF;    
+	overflow: hidden;
+	text-indent: 33px;
+	background-size: contain;
+	text-transform: none;
+	display: block;
+	position: relative;
+}
+ul.tabs li.yappy-buy-section dt::before{
+	background: #d1dedf url(images/config_tab_dt_bg.gif) no-repeat 0 50%;
+	display: block;
+	width: 20px;
+	height: 20px;
+	content: " ";
+	position: absolute;
+	left: 0;
+}

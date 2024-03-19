@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+
+    <checkout_cart_index>
+        <reference name="checkout.cart.top_methods">
+            <block type="ybcheckout/button" name="checkout.cart.methods.ybcheckout.top" place="checkout.cart.top_methods" before="-" />
+        </reference>
+
+        <reference name="checkout.cart.methods">
+            <block type="ybcheckout/button" name="checkout.cart.methods.ybcheckout.bottom"  place="checkout.cart.methods" before="-" />
+        </reference>
+
+    </checkout_cart_index>
+
+    <catalog_product_view>
+        <reference name="product.info.addtocart">            
+            <block type="ybcheckout/productbutton" name="product.info.addtocart.ybcheckout"  place="catalog_product_view" />            
+        </reference>
+    </catalog_product_view>
+
+
+    <default>
+        <reference name="head">
+			<block type="ybcheckout/js" name="ybcheckout.js"   />
+            <action method="addItem" ifconfig="yappyBuy/general/enable" ><type>skin_js</type><name>js/yappyBuy_checkout.js</name></action>
+			<action method="addItem" ifconfig="yappyBuy/general/enable" ><type>skin_css</type><name>css/yappyBuy_checkout.css</name></action>
+        </reference>		
+        <reference name="topCart.extra_actions">
+            <block type="ybcheckout/button" name="ybcheckout.top_cart.shortcut" place="topCart.extra_actions"/>
+        </reference>
+        <reference name="cart_sidebar.extra_actions">
+            <block type="ybcheckout/button" name="ybcheckout.cart_sidebar.shortcut"  place="cart_sidebar.extra_actions" />
+        </reference>
+    </default>
+
+
+</layout>
