@@ -84,13 +84,21 @@
                 <class>YappyBuy_Checkout_Model</class>
             </ybcheckout>		
 			<checkout>
-               <rewrite>                   
+				<rewrite>                   
                    <cart_api>YappyBuy_Checkout_Model_Api</cart_api> 
-				 </rewrite>
-				 <!--rewrite>
+				</rewrite>
+				<rewrite>
 				   <cart_api_v2>YappyBuy_Checkout_Model_Api_V2</cart_api_v2>
-               </rewrite-->
-           </checkout>		
+				</rewrite>
+           </checkout>
+		   <sales>
+				<rewrite>                   
+                   <order_api>YappyBuy_Checkout_Model_OrderApi</order_api> 
+				</rewrite>			   		   
+				<rewrite>                   
+                   <order_api_v2>YappyBuy_Checkout_Model_Api_OrderV2</order_api_v2> 				                 
+				</rewrite>			   		   				
+		   </sales>
 		</models>
 		<helpers>
             <ybcheckout>

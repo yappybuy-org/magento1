@@ -16,7 +16,9 @@ class YappyBuy_Checkout_Helper_Curl extends Mage_Core_Helper_Abstract
   {
 
 		if($authKey=$this->authenticate()){			
-
+Mage::log($type,null,"ybuy.log");	
+Mage::log($endpoint,null,"ybuy.log");	
+Mage::log(print_r($data,true),null,"ybuy.log");	
 			$formattedResponse= null;
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, Mage::helper('ybcheckout')->getApiUrl().$endpoint);						
@@ -47,6 +49,7 @@ class YappyBuy_Checkout_Helper_Curl extends Mage_Core_Helper_Abstract
 			$responseContent = curl_exec($ch);
 			$err      = curl_error($ch);			
 	
+Mage::log($err,null,"ybuy.log");	
 
 			$response['headers'] = curl_getinfo($ch);
 			$response = $this->setResponseState($response, $responseContent, $ch);	   
@@ -54,7 +57,7 @@ class YappyBuy_Checkout_Helper_Curl extends Mage_Core_Helper_Abstract
 			$formattedResponse = $this->formatResponse($response);
 
 			curl_close($ch);
-
+Mage::log($formattedResponse,null,"ybuy.log");	
 			return $formattedResponse;		
 		}
 		return false;

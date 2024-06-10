@@ -105,10 +105,22 @@ class YappyBuy_Checkout_CheckoutController extends Mage_Core_Controller_Front_Ac
 			}			 
 		}
 		if($result['status'] == 'success'){
-			
+			$curl=Mage::helper('ybcheckout/curl');
+
+			$data=array(
+				"reference"=>$this->_getCart()->getQuote()->getId()
+			);
+					
+			$result=$curl->curlRequest('POST','api/v1/carts',$data); 		
+			if(is_array($result) && isset($result['uri'])){
+				return $this->getResponse()->setHeader('Content-type', 'application/json;charset=utf-8', true)->setBody(Mage::helper('core')->jsonEncode(array('url'=>$result['uri'], 'status'=>'success') ));
+			}else{
+				return $this->getResponse()->setHeader('Content-type', 'application/json;charset=utf-8', true)->setBody(Mage::helper('core')->jsonEncode($result /* array('url'=>"test") */));
+			}	
+		}else{
+			$this->getResponse()->setHeader('Content-type', 'application/json');
+			$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));		
 		}
-        $this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));		
 	}
 	
 	public function successAction(){
